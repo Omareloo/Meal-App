@@ -1,14 +1,11 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:meal_ware/features/auth/presentation/pages/auth_screen.dart';
 import 'config/style/app_theme.dart';
-import 'core/screens/splash_screen.dart';
 import 'db_injection.dart';
 
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   await DpInjection.init();
   runApp(const MyApp());
 }
@@ -26,7 +23,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: appTheme,
-        home: SplashScreen(),
+        home: AuthScreen(),
       ),
     );
   }

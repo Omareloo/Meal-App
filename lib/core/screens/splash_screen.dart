@@ -17,19 +17,19 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _loading();
+    // _loading();
   }
 
-  _loading() {
-    Timer(const Duration(seconds: 3), () {
-      if (sl<SharedPreferencesService>().token != null) {
-        Navigator.pushNamedAndRemoveUntil(
-            context, AppRoute.auth, (_) => false);
-      } else {
-        Navigator.pushNamedAndRemoveUntil(context, AppRoute.auth, (_) => false);
-      }
-    });
-  }
+  // _loading() {
+  //   Timer(const Duration(seconds: 3), () {
+  //     if (sl<SharedPreferencesService>().token != null) {
+  //       Navigator.pushNamedAndRemoveUntil(
+  //           context, AppRoute.auth, (_) => false);
+  //     } else {
+  //       Navigator.pushNamedAndRemoveUntil(context, AppRoute.auth, (_) => false);
+  //     }
+  //   });
+  // }
 
   @override
   void dispose() {
