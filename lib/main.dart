@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meal_ware/features/auth/presentation/pages/auth_screen.dart';
 import 'config/style/app_theme.dart';
-import 'db_injection.dart';
+import 'core/di/db_injection.dart';
+import 'core/di/db_injection.dart' as DpInjection;
 
 
 void main() async {
