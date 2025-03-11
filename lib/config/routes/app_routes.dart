@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:meal_ware/features/auth/presentation/pages/register_screen.dart';
 
 import '../../features/auth/presentation/pages/auth_screen.dart';
 
 class AppRoute {
   static const String auth = "/auth";
+
+  static const String register = "/register";
 
 
   static final GlobalKey<NavigatorState> navigatorKey =
@@ -16,6 +19,8 @@ class AppRoute {
       switch (settings.name) {
         case auth:
           return _animateRouteBuilder(const AuthScreen(), x: 0, y: 1);
+        case register:
+          return _animateRouteBuilder(const RegisterScreen(), x: 0, y: 1);
         default:
           return MaterialPageRoute(builder: (_) => const AuthScreen());
       }

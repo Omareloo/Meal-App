@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../config/style/app_color.dart';
-import '../../../../config/style/app_text_styles.dart';
+import '../../../../../config/style/app_color.dart';
+import '../../../../../config/style/app_text_styles.dart';
 
-class AppButton extends StatelessWidget {
-  const AppButton({super.key});
+class AppLoginButton extends StatelessWidget {
+  const AppLoginButton({super.key});
 
   @override
   Widget build(BuildContext context) {
