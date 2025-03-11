@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "385968325002",
+    "firebase_url": "https://meal-app110-default-rtdb.firebaseio.com",
+    "project_id": "meal-app110",
+    "storage_bucket": "meal-app110.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385968325002:android:b13856538d582c3d1e4873",
+        "android_client_info": {
+          "package_name": "com.example.meal_ware"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDag5fQko1jl242Wilbmq9TCWqswTITk8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
