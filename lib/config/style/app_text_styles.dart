@@ -9,12 +9,16 @@ class AppTextStyle {
 
   static final TextStyle _fontSize24 = TextStyle(fontSize: 24.sp);
 
+  static final TextStyle _fontSize21 = TextStyle(fontSize: 21.sp);
+
   static final TextStyle _fontSize18 = TextStyle(fontSize: 18.sp);
 
 
   static final TextStyle _fontSize16 = TextStyle(fontSize: 16.sp);
 
   static final TextStyle _fontSize14 = TextStyle(fontSize: 14.sp);
+
+  static final TextStyle _fontSize13 = TextStyle(fontSize: 13.sp);
 
   static final TextStyle _fontSize12 = TextStyle(fontSize: 12.sp);
 
@@ -51,8 +55,20 @@ class AppTextStyle {
       .merge(_fontWeightBold)
       .copyWith(color: AppColor.black);
 
+  static TextStyle font21background700 = _fontCairo
+      .merge(_fontWeight700)
+      .merge(_fontSize21)
+      .merge(_fontWeightBold)
+      .copyWith(color: AppColor.backGround);
+
   static TextStyle font18black700 = _fontCairo
       .merge(_fontWeight700)
+      .merge(_fontSize18)
+      .merge(_fontWeightBold)
+      .copyWith(color: AppColor.black);
+
+  static TextStyle font18black400 = _fontCairo
+      .merge(_fontWeight400)
       .merge(_fontSize18)
       .merge(_fontWeightBold)
       .copyWith(color: AppColor.black);
@@ -62,6 +78,11 @@ class AppTextStyle {
       .merge(_fontSize16)
       .merge(_fontWeightBold)
       .copyWith(color: AppColor.blue);
+
+  static TextStyle font16white400 = _fontCairo
+      .merge(_fontWeight400)
+      .merge(_fontSize16)
+      .copyWith(color: AppColor.white);
 
 
   static TextStyle font16black700 = _fontCairo
@@ -114,6 +135,11 @@ class AppTextStyle {
       .merge(_fontWeight400)
       .merge(_fontSize14)
       .copyWith(color: AppColor.black);
+
+  static TextStyle font13white400 = _fontCairo
+      .merge(_fontWeight400)
+      .merge(_fontSize13)
+      .copyWith(color: AppColor.white);
 
 
   static TextStyle font12grayGray500 = _fontCairo
