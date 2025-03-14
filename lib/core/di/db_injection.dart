@@ -3,7 +3,9 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meal_ware/features/auth/domain/use_case/log_in_use_case.dart';
+import 'package:meal_ware/features/auth/domain/use_case/sign_up_use_case.dart';
 import 'package:meal_ware/features/auth/presentation/manager/cubits/log_in_cubit.dart';
+import 'package:meal_ware/features/auth/presentation/manager/cubits/register_cubit.dart';
 import '../../features/auth/data/data_source/auth_datasource.dart';
 import '../data/local/shared_preferences_service.dart';
 import '../../features/auth/data/repositories/auth_repo_impl.dart';
@@ -37,37 +39,17 @@ Future<void> setupServiceLocator() async {
 
   getIt.registerFactory<LogInCubit>(() => LogInCubit(getIt()));
 
- /* getIt.registerLazySingleton<SignUpDataSourceImpl>(
-        () => SignUpDataSourceImpl(getIt<FirebaseAuth>(), getIt<FirebaseFirestore>()),
-  );
 
-  getIt.registerLazySingleton<SignUpRepo>(
-        () => SignUpRepoImpl(getIt<SignUpDataSourceImpl>(), getIt<Connectivity>()),
-  );
+
+
 
   getIt.registerLazySingleton<SignUpUseCase>(
-        () => SignUpUseCase(getIt<SignUpRepo>()),
+        () => SignUpUseCase(getIt<AuthRepo>()),
   );
 
-  getIt.registerFactory<SignUpViewModel>(
-        () => SignUpViewModel(getIt<SignUpUseCase>()),
+  getIt.registerFactory<RegisterCubit>(
+        () => RegisterCubit(getIt<SignUpUseCase>()),
   );
 
-  // ✅ Home Dependencies
-  getIt.registerLazySingleton<HomeOnlineDsImpl>(
-        () => HomeOnlineDsImpl(), // You might need to pass APIs or services if required
-  );
-
-  getIt.registerLazySingleton<HomeRepo>(
-        () => HomeRepoImpl(getIt<HomeOnlineDsImpl>()),
-  );
-
-  getIt.registerLazySingleton<GetCurrentWeatherUseCase>(
-        () => GetCurrentWeatherUseCase(getIt<HomeRepo>()),
-  );
-
-  getIt.registerFactory<HomeViewModel>(
-        () => HomeViewModel(getIt<GetCurrentWeatherUseCase>()),
-  );*/
 
 }

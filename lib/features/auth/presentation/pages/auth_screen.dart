@@ -7,6 +7,7 @@ import 'package:meal_ware/features/auth/presentation/manager/cubits/log_in_cubit
 import 'package:meal_ware/features/auth/presentation/manager/cubits/log_in_states.dart';
 import 'package:meal_ware/features/auth/presentation/widgets/auth_widgets/login_with_widget.dart';
 import 'package:meal_ware/features/auth/presentation/widgets/auth_widgets/logo.dart';
+import 'package:meal_ware/features/auth/presentation/widgets/fields/email_form_field.dart';
 import 'package:meal_ware/features/auth/presentation/widgets/fields/name_form_field.dart';
 import 'package:meal_ware/features/auth/presentation/widgets/auth_widgets/register/register_message_widget.dart';
 import '../widgets/auth_widgets/facebook_google_widget.dart';
@@ -41,13 +42,14 @@ class AuthScreen extends StatelessWidget {
 
             if (state is LoginFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.error)),
+                SnackBar(content: Text(state.error),backgroundColor: Colors.white,),
               );
             }
 
             if (state is LoginSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Login Successful")),
+
+                const SnackBar(content: Text("Login Successful"),backgroundColor: Colors.white,),
               );
               // Navigate to Home or Dashboard screen
             }
@@ -67,7 +69,7 @@ class AuthScreen extends StatelessWidget {
                         children: [
                           const LogoWidget(),
                           20.hs,
-                          UserNameFormField(userNameController: cubit.emailController),
+                          EmailFormField(emailController: cubit.emailController),
                           16.hs,
                           PasswordFormField(passwordController: cubit.passwordController),
                           16.hs,

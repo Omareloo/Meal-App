@@ -103,13 +103,15 @@ class AuthDataSourceImpl implements DataSource {
 
       final idToken = await userCredential.user?.getIdToken() ?? '';
       if (idToken.isNotEmpty) {
-        if (kDebugMode) print('User ID Token: $idToken'); // Debug log
+        debugPrint('✅ User ID Token: $idToken'); // Debug log
       }
 
       return const Right(true);
     } on FirebaseAuthException catch (e) {
+      debugPrint('🔥 FirebaseAuthException: ${e.code} - ${e.message}');
       return Left(_mapFirebaseErrorCodeToMessage(e.code));
     } catch (e) {
+      debugPrint('🔥 Unexpected error: $e');
       return Left('An unexpected error occurred: $e');
     }
   }
@@ -132,6 +134,7 @@ class AuthDataSourceImpl implements DataSource {
       case 'network-request-failed':
         return 'Network error. Check your internet connection.';
       default:
+        debugPrint('⚠️ Unhandled Firebase Auth Error Code: $code');  // Log unknown errors
         return 'Authentication failed. Please try again later.';
     }
   }
