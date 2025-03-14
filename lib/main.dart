@@ -1,14 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meal_ware/features/auth/presentation/pages/auth_screen.dart';
+import 'package:meal_ware/firebase_options.dart';
 import 'config/style/app_theme.dart';
 import 'core/di/db_injection.dart';
-import 'core/di/db_injection.dart' as DpInjection;
+import 'package:flutter/foundation.dart';
 
 
 void main() async {
-  await DpInjection.init();
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform, // ✅ Fix for Web
+  );
+  await setupServiceLocator(); // ✅ Setup dependencies
+    runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

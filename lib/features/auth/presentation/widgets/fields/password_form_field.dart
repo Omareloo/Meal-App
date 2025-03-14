@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:meal_ware/core/utils/heplers/validation_form.dart';
 
-import '../../../../config/style/app_color.dart';
+import '../../../../../config/style/app_color.dart';
 
 
 class PasswordFormField extends StatefulWidget {
-  final TextEditingController passwordController = TextEditingController();
-   PasswordFormField({super.key,});
+  final TextEditingController passwordController ;
+   PasswordFormField({super.key,required this.passwordController});
 
   @override
   State<PasswordFormField> createState() => _PasswordFormFieldState();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../config/style/app_color.dart';
+import '../../../../../config/style/app_color.dart';
 
 class LoginWithWidget extends StatelessWidget {
   const LoginWithWidget({super.key});
