@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:meal_ware/core/data/local/shared_preferences_service.dart';
 import 'package:meal_ware/features/auth/presentation/pages/auth_screen.dart';
 import 'package:meal_ware/features/auth/presentation/pages/verification_screen.dart';
 import 'config/style/app_theme.dart';
+import 'core/data/local/Profile/ProfileModel.dart';
 import 'core/di/db_injection.dart';
 import 'core/di/db_injection.dart' as DpInjection;
 
-
 void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(ProfileModelAdapter());
   await DpInjection.init();
+  await sl<SharedPreferencesHelper>().init();
   runApp(const MyApp());
 }
 
