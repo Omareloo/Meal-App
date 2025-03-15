@@ -57,3 +57,67 @@
 //
 //
 // }
+
+import 'dart:developer';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
+
+class SharedPreferencesHelper {
+  late SharedPreferences sharedPreferences;
+  Future<void> init() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+   removeData(String key) async {
+    await sharedPreferences.remove(key);
+    log('Shared preferences helper: data with key $key has been removed');
+  }
+
+   clearAllData() async {
+    await sharedPreferences.clear();
+    log("All Data in shared preferences is removed");
+  }
+
+   setData(String key, value) async {
+    switch (value.runtimeType) {
+      case const (String):
+        await sharedPreferences.setString(key, value);
+        break;
+      case const (int):
+        await sharedPreferences.setInt(key, value);
+        break;
+      case const (bool):
+        await sharedPreferences.setBool(key, value);
+        break;
+      case const (double):
+        await sharedPreferences.setDouble(key, value);
+        break;
+      default:
+        throw Exception("Invalid type");
+    }
+    log('Shared preferences helper: data with key $key has been set to $value');
+  }
+
+   Future<String> getString(String key) async {
+    log('Shared preferences helper: fetched string with key $key: ${sharedPreferences.getString(key) ?? ""}');
+    return sharedPreferences.getString(key) ?? "";
+  }
+
+   Future<int> getInt(String key) async {
+    log('Shared preferences helper: fetched int with key $key: ${sharedPreferences.getInt(key) ?? 0}');
+    return sharedPreferences.getInt(key) ?? 0;
+  }
+
+   Future<bool> getBool(String key) async {
+    log('Shared preferences helper: fetched bool with key $key: ${sharedPreferences.getBool(key) ?? false}');
+    return sharedPreferences.getBool(key) ?? false;
+  }
+
+   Future<double> getDouble(String key) async {
+    log('Shared preferences helper: fetched double with key $key: ${sharedPreferences.getDouble(key) ?? 0}');
+    return sharedPreferences.getDouble(key) ?? 0;
+  }
+
+
+}
