@@ -5,8 +5,8 @@ import '../../../../../config/style/app_color.dart';
 
 
 class PasswordFormField extends StatefulWidget {
-  final TextEditingController passwordController = TextEditingController();
-   PasswordFormField({super.key,});
+  final TextEditingController passwordController ;
+   PasswordFormField({super.key,required this.passwordController});
 
   @override
   State<PasswordFormField> createState() => _PasswordFormFieldState();

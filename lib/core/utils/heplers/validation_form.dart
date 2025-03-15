@@ -37,14 +37,13 @@ class ValidationForm {
   }
 
   static String? nameValidator(String? v) {
-    if ((v?.isEmpty ?? true)) {
+    if (v == null || v.trim().isEmpty) {
       return AppStrings.pleaseEnterName;
-    } else {
-      // Split the name by spaces and check if it has exactly four parts
-      List<String> nameParts = v!.trim().split(RegExp(r'\s+'));
-      if (nameParts.length != 4) {
-        return AppStrings.pleaseEnterName;
-      }
-    }return null;
+    }
+    List<String> nameParts = v.trim().split(RegExp(r'\s+'));
+    if (nameParts.length < 2) {
+      return "Please enter at least a first and last name";
+    }
+    return null;
   }
 }

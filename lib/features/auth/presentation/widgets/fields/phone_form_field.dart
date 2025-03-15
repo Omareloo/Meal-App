@@ -4,8 +4,8 @@ import '../../../../../core/utils/heplers/validation_form.dart';
 
 class PhoneFormField extends StatelessWidget {
 
-    final TextEditingController phoneController = TextEditingController();
-  PhoneFormField({super.key});
+    final TextEditingController phoneController;
+  PhoneFormField({super.key,required this.phoneController});
 
   @override
   Widget build(BuildContext context) {
