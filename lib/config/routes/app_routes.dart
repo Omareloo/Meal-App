@@ -7,6 +7,7 @@ class AppRoute {
   static const String auth = "/auth";
 
   static const String register = "/register";
+  
 
 
   static final GlobalKey<NavigatorState> navigatorKey =

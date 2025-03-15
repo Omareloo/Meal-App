@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:meal_ware/core/screens/splash_screen.dart';
 import 'package:meal_ware/features/auth/presentation/pages/auth_screen.dart';
 import 'package:meal_ware/features/auth/presentation/pages/verification_screen.dart';
 import 'config/style/app_theme.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: appTheme,
-        home: VerificationScreen(),
+        home: SplashScreen(),
       ),
     );
   }
