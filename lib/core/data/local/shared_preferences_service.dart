@@ -68,6 +68,13 @@ class SharedPreferencesHelper {
   Future<void> init() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }
+  Future<bool> isFirstTime() async {
+    bool firstTime = sharedPreferences.getBool("isFirstTime") ?? true;
+    if (firstTime) {
+      await sharedPreferences.setBool("isFirstTime", false);
+    }
+    return firstTime;
+  }
 
    removeData(String key) async {
     await sharedPreferences.remove(key);
