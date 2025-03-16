@@ -9,7 +9,7 @@ import 'package:meal_ware/features/auth/presentation/manager/cubits/log_in_cubit
 import 'package:meal_ware/features/auth/presentation/manager/cubits/register_cubit.dart';
 
 import '../../features/auth/data/data_source/auth_datasource.dart';
-import '../data/local/shared_preferences_service.dart';
+
 import '../../features/auth/data/repositories/auth_repo_impl.dart';
 import '../../features/auth/domain/repositories/auth_repo.dart';
 
@@ -22,11 +22,11 @@ Future<void> setupServiceLocator() async {
 
 Future <void> init()async{
 //Remote data source
-sl.registerLazySingleton<DataSource>(
-        ()=>DataSourceImpl(auth: sl.call(), firestore: sl.call()));
+getIt.registerLazySingleton<DataSource>(
+        ()=>AuthDataSourceImpl(auth: getIt.call(), firestore: getIt.call()));
 
- sl.registerLazySingleton<FavoritesDatasource>(
-        ()=>FavoritesDatasourceImp(firestore: sl.call()));       
+ getIt.registerLazySingleton<FavoritesDatasource>(
+        ()=>FavoritesDatasourceImp(firestore: getIt.call()));       
 }
 
   // ✅ Connectivity
