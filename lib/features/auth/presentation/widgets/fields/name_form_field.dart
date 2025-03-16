@@ -4,8 +4,8 @@ import '../../../../../core/utils/heplers/validation_form.dart';
 
 class UserNameFormField extends StatelessWidget {
 
-  final TextEditingController userNameController = TextEditingController();
-  UserNameFormField({super.key});
+  final TextEditingController userNameController ;
+  UserNameFormField({super.key,required this.userNameController});
 
   @override
   Widget build(BuildContext context) {
