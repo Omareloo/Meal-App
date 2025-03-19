@@ -5,8 +5,8 @@ import '../../../../../core/utils/heplers/validation_form.dart';
 
 class EmailFormField extends StatelessWidget {
 
-  final TextEditingController emailController = TextEditingController();
-  EmailFormField({super.key});
+  final TextEditingController emailController;
+  EmailFormField({super.key,required this.emailController});
 
   @override
   Widget build(BuildContext context) {

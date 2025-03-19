@@ -1,10 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-
-import '../../config/routes/app_routes.dart';
-import '../di/db_injection.dart';
-import '../data/local/shared_preferences_service.dart';
+import 'package:meal_ware/features/auth/presentation/widgets/auth_widgets/logo.dart';
+import 'package:meal_ware/features/onboarding/onboarding_screen.dart';
+import 'package:meal_ware/features/onboarding/pages/page_one.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,33 +10,60 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<Offset> animation;
+
   @override
   void initState() {
     super.initState();
-    // _loading();
-  }
 
-  // _loading() {
-  //   Timer(const Duration(seconds: 3), () {
-  //     if (sl<SharedPreferencesService>().token != null) {
-  //       Navigator.pushNamedAndRemoveUntil(
-  //           context, AppRoute.auth, (_) => false);
-  //     } else {
-  //       Navigator.pushNamedAndRemoveUntil(context, AppRoute.auth, (_) => false);
-  //     }
-  //   });
-  // }
+
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1), 
+    );
+
+    
+    animation = Tween<Offset>(
+      begin: const Offset(0, -1), 
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: controller,
+      curve: Curves.easeInOut,
+    ));
+
+    
+    controller.forward();
+
+  
+    Future.delayed(const Duration(seconds: 5), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const OnboardingScreen(),
+        ),
+      );
+    });
+  }
 
   @override
   void dispose() {
-    // TODO: implement dispose
+  
+    controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      body: Center(
+        child: SlideTransition(
+          position: animation,
+          child: const LogoWidget(),
+        ),
+      ),
     );
   }
 }
