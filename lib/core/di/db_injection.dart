@@ -9,8 +9,11 @@ import 'package:meal_ware/features/auth/presentation/manager/cubits/log_in_cubit
 import 'package:meal_ware/features/auth/presentation/manager/cubits/register_cubit.dart';
 
 import '../../features/auth/data/data_source/auth_datasource.dart';
+import '../data/local/Profile/ProfileService.dart';
+import '../data/local/shared_preferences_service.dart';
+import '../../features/auth/data/repositories/auth_repository.dart';
 
-import '../../features/auth/data/repositories/auth_repo_impl.dart';
+
 import '../../features/auth/domain/repositories/auth_repo.dart';
 
 final getIt = GetIt.instance;
@@ -21,6 +24,8 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance);
 
 Future <void> init()async{
+  sl.registerSingleton<ProfileService>(ProfileService());
+  sl.registerSingleton<SharedPreferencesHelper>(SharedPreferencesHelper());
 //Remote data source
 getIt.registerLazySingleton<DataSource>(
         ()=>AuthDataSourceImpl(auth: getIt.call(), firestore: getIt.call()));
