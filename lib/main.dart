@@ -29,7 +29,7 @@ void main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(ProfileModelAdapter());
-  await DpInjection.init();
+  // await DpInjection.init();
   await getIt<SharedPreferencesHelper>().init();
   runApp(const MyApp());
 
