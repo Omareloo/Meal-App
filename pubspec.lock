@@ -185,7 +185,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.19.1"
-
+  connectivity_plus:
+    dependency: "direct main"
+    description:
+      name: connectivity_plus
+      sha256: "04bf81bb0b77de31557b58d052b24b3eee33f09a6e7a8c68a3e247c7df19ec27"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.3"
+  connectivity_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: connectivity_plus_platform_interface
+      sha256: "42657c1715d48b167930d5f34d00222ac100475f73d10162ddf43e714932f204"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   convert:
     dependency: transitive
     description:
@@ -202,7 +217,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.6"
-
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -290,15 +304,6 @@ packages:
       sha256: "289279317b4b16eb2bb7e271abccd4bf84ec9bdcbe999e278a94b804f5630418"
       url: "https://pub.dev"
     source: hosted
-
-    version: "1.3.2"
-  ffi:
-    dependency: transitive
-    description:
-      name: ffi
-      sha256: "289279317b4b16eb2bb7e271abccd4bf84ec9bdcbe999e278a94b804f5630418"
-      url: "https://pub.dev"
-    source: hosted
     version: "2.1.4"
   file:
     dependency: transitive
@@ -308,7 +313,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.1"
-
   firebase_auth:
     dependency: "direct main"
     description:
@@ -644,7 +648,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
-
+  nm:
+    dependency: transitive
+    description:
+      name: nm
+      sha256: "2c9aae4127bdc8993206464fcc063611e0e36e72018696cd9631023a31b24254"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.0"
   package_config:
     dependency: transitive
     description:
@@ -653,7 +664,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
-
   path:
     dependency: transitive
     description:
@@ -986,8 +996,7 @@ packages:
       sha256: ddfa8d30d89985b96407efce8acbdd124701f96741f2d981ca860662f1c0dc02
       url: "https://pub.dev"
     source: hosted
-
-    version: "14.3.1"
+    version: "15.0.0"
   watcher:
     dependency: transitive
     description:
@@ -996,7 +1005,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-
   web:
     dependency: transitive
     description:
@@ -1005,7 +1013,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-
   web_socket:
     dependency: transitive
     description:
@@ -1022,7 +1029,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
-
   xdg_directories:
     dependency: transitive
     description:
