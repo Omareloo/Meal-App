@@ -1,3 +1,3 @@
-class AppDataSource {
+abstract class Datasource {
 
 }

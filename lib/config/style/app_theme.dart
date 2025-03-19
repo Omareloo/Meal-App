@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:meal_ware/core/extentions/size_extension.dart';
 
 import 'app_color.dart';
 
@@ -9,11 +10,17 @@ ThemeData get appTheme => ThemeData(
     fontFamily: "cairo",
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.white,
-      showSelectedLabels: true,
-      selectedItemColor: AppColor.blue,
-      unselectedItemColor: AppColor.grey,
-      showUnselectedLabels: true,
+      backgroundColor: AppColor.white,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      unselectedIconTheme: IconThemeData(
+          color:AppColor.backGround,
+          size: 24.sp
+      ),
+      selectedIconTheme: IconThemeData(
+          color: AppColor.white,
+          size: 26.sp
+      ),
     ),
     appBarTheme:  const AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle(
