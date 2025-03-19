@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_ware/core/extentions/size_extension.dart';
+import 'package:meal_ware/features/auth/presentation/pages/auth_screen.dart';
 import 'package:meal_ware/features/onboarding/pages/page_four.dart';
 import 'package:meal_ware/features/onboarding/pages/page_one.dart';
 import 'package:meal_ware/features/onboarding/pages/page_three.dart';
@@ -80,7 +81,7 @@ class _PageViewBodyState extends State<PageViewBody> {
                           curve: Curves.easeInOut,
                         );
                       } else {
-                      
+                      Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => AuthScreen()),);
                       }
                     },
                     child: Text(
