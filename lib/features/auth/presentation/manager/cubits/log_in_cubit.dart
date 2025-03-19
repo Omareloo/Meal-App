@@ -14,12 +14,10 @@ class LogInCubit extends Cubit<LoginState> {
 
   void login(BuildContext context) async {
     if (!formKey.currentState!.validate()) return;
-
+    formKey.currentState!.save();
     emit(LoginLoading());
-
     Either<String, void> eitherResponse =
     await useCase.execute(emailController.text, passwordController.text);
-
     eitherResponse.fold(
           (error) {
         emit(LoginFailure(error: error));
@@ -29,4 +27,10 @@ class LogInCubit extends Cubit<LoginState> {
       },
     );
   }
+  @override
+  Future<void> close() {
+    emailController.dispose();
+    passwordController.dispose();
+    return super.close();
+}
 }

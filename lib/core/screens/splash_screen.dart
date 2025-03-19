@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_ware/features/auth/presentation/widgets/auth_widgets/logo.dart';
 import 'package:meal_ware/features/onboarding/onboarding_screen.dart';
-import 'package:meal_ware/features/onboarding/pages/page_one.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,8 +17,6 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-
-
     controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 1), 
@@ -50,7 +47,6 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void dispose() {
-  
     controller.dispose();
     super.dispose();
   }

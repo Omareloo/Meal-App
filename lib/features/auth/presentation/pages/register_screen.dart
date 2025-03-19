@@ -10,6 +10,7 @@ import 'package:meal_ware/features/auth/presentation/widgets/auth_widgets/login/
 import 'package:meal_ware/features/auth/presentation/widgets/buttons/register_button.dart';
 import 'package:meal_ware/features/auth/presentation/widgets/fields/email_form_field.dart';
 import 'package:meal_ware/features/home/presentation/pages/home_screen.dart';
+import '../../../layout/presentation/pages/layout_screen.dart';
 import '../widgets/auth_widgets/facebook_google_widget.dart';
 import '../widgets/auth_widgets/logo.dart';
 import '../widgets/auth_widgets/register/register_check_box.dart';
@@ -48,7 +49,7 @@ class RegisterScreen extends StatelessWidget {
             if (state is RegisterSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("Registration Successful"), backgroundColor: Colors.green),);
-                Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => (HomeScreen())),);
+                Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => (LayoutScreen())),);
             }
           },
           child: BlocBuilder<RegisterCubit, RegisterState>(

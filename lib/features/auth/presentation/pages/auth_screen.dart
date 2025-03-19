@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meal_ware/config/style/app_color.dart';
+import 'package:meal_ware/core/data/local/shared_preferences_service.dart';
 import 'package:meal_ware/core/extentions/extention.dart';
 import 'package:meal_ware/features/auth/domain/use_case/log_in_use_case.dart';
 import 'package:meal_ware/features/auth/presentation/manager/cubits/log_in_cubit.dart';
@@ -8,8 +9,8 @@ import 'package:meal_ware/features/auth/presentation/manager/cubits/log_in_state
 import 'package:meal_ware/features/auth/presentation/widgets/auth_widgets/login_with_widget.dart';
 import 'package:meal_ware/features/auth/presentation/widgets/auth_widgets/logo.dart';
 import 'package:meal_ware/features/auth/presentation/widgets/fields/email_form_field.dart';
-import 'package:meal_ware/features/auth/presentation/widgets/fields/name_form_field.dart';
 import 'package:meal_ware/features/auth/presentation/widgets/auth_widgets/register/register_message_widget.dart';
+import 'package:meal_ware/features/layout/presentation/pages/layout_screen.dart';
 import '../widgets/auth_widgets/facebook_google_widget.dart';
 import '../widgets/auth_widgets/login/login_check_box.dart';
 import '../widgets/buttons/login_button.dart';
@@ -39,17 +40,18 @@ class AuthScreen extends StatelessWidget {
                 Navigator.pop(context);
               }
             }
-
             if (state is LoginFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.error),backgroundColor: Colors.white,),
               );
             }
-
             if (state is LoginSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
-
                 const SnackBar(content: Text("Login Successful"),backgroundColor: Colors.white,),
+              );
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => LayoutScreen()),
               );
               // Navigate to Home or Dashboard screen
             }

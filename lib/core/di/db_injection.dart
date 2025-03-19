@@ -8,7 +8,6 @@ import 'package:meal_ware/features/auth/domain/use_case/log_in_use_case.dart';
 import 'package:meal_ware/features/auth/domain/use_case/sign_up_use_case.dart';
 import 'package:meal_ware/features/auth/presentation/manager/cubits/log_in_cubit.dart';
 import 'package:meal_ware/features/auth/presentation/manager/cubits/register_cubit.dart';
-
 import '../../features/auth/data/data_source/auth_datasource.dart';
 import '../data/local/Profile/ProfileService.dart';
 import '../data/local/shared_preferences_service.dart';
@@ -54,9 +53,6 @@ getIt.registerLazySingleton<DataSource>(
   getIt.registerFactory<LogInCubit>(() => LogInCubit(getIt()));
 
 
-
-
-
   getIt.registerLazySingleton<SignUpUseCase>(
         () => SignUpUseCase(getIt<AuthRepo>()),
   );
@@ -64,7 +60,5 @@ getIt.registerLazySingleton<DataSource>(
   getIt.registerFactory<RegisterCubit>(
         () => RegisterCubit(getIt<SignUpUseCase>()),
   );
-
-
 }
 
