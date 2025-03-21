@@ -67,6 +67,12 @@ class AppTextStyle {
       .merge(_fontWeightBold)
       .copyWith(color: AppColor.black);
 
+  static TextStyle font18background700 = _fontCairo
+      .merge(_fontWeight700)
+      .merge(_fontSize18)
+      .merge(_fontWeightBold)
+      .copyWith(color: AppColor.backGround);
+
   static TextStyle font18black400 = _fontCairo
       .merge(_fontWeight400)
       .merge(_fontSize18)

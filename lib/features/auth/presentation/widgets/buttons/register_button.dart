@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../config/style/app_color.dart';
 import '../../../../../config/style/app_text_styles.dart';
 
 class RegisterButton extends StatelessWidget {
-  const RegisterButton({super.key});
+  final VoidCallback onPressed;
+
+  const RegisterButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +17,10 @@ class RegisterButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(45),
         ),
         elevation: 0,
-        minimumSize:  Size(300, 57),
+        minimumSize: const Size(300, 57),
       ),
-      child:  Text('Register',style: AppTextStyle.font21background700,),
-      onPressed: () {},
+      child: Text('Register', style: AppTextStyle.font21background700),
+      onPressed: onPressed, // ✅ Pass the callback function
     );
   }
 }

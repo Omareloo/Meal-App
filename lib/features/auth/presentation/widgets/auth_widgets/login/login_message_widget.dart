@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:meal_ware/features/auth/presentation/pages/auth_screen.dart';
 import '../../../../../../config/style/app_color.dart';
 import '../../../../../../config/style/app_text_styles.dart';
-import '../../../pages/register_screen.dart';
 
 class LoginMessageWidget extends StatelessWidget {
   const LoginMessageWidget({super.key});
@@ -17,7 +17,7 @@ class LoginMessageWidget extends StatelessWidget {
         TextButton(
           onPressed: ()
           {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const RegisterScreen(),));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AuthScreen(),));
           },
           child: Text(
             'Login Now',style: AppTextStyle.font16white700,),

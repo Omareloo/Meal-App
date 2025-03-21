@@ -65,10 +65,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesHelper {
   late SharedPreferences sharedPreferences;
+  
   Future<void> init() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }
-  Future<bool> isFirstTime() async {
+  Future<bool> getIsFirstTime() async {
     bool firstTime = sharedPreferences.getBool("isFirstTime") ?? true;
     if (firstTime) {
       await sharedPreferences.setBool("isFirstTime", false);
