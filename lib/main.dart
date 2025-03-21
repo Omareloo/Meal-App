@@ -5,6 +5,8 @@ import 'package:meal_ware/core/screens/splash_screen.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:meal_ware/core/data/local/shared_preferences_service.dart';
+
+
 import 'config/style/app_theme.dart';
 import 'core/data/local/Profile/ProfileModel.dart';
 import 'core/di/db_injection.dart';
@@ -34,7 +36,9 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: appTheme,
+
         home: SplashScreen(),
+
       ),
     );
   }

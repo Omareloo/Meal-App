@@ -5,6 +5,8 @@ import 'package:meal_ware/features/home/presentation/pages/home_screen.dart';
 import 'package:meal_ware/features/layout/presentation/manager/states.dart';
 import 'package:meal_ware/features/profile/presentation/screens/profile.dart';
 
+
+
 class LayoutCubit extends Cubit<LayoutStates>{
 
   LayoutCubit():super(LayoutInitialState());
@@ -18,6 +20,8 @@ class LayoutCubit extends Cubit<LayoutStates>{
     HomeScreen(),
     Fav(),
     Profile(),
+
+
   ];
 
   void changeScreen({required int index}){
