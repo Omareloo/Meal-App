@@ -12,7 +12,7 @@ import 'core/di/db_injection.dart';
 
 void main() async {
 
-
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await setupServiceLocator(); // ✅ Setup dependencies
   await Hive.initFlutter();

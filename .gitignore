@@ -43,6 +43,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/android/local.properties
+
+ios/Runner/GeneratedPluginRegistrant.*
+android/app/src/main/java/generated_plugin_registrant.*
+
 
 # FVM Version Cache
 .fvm/

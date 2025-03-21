@@ -3,8 +3,7 @@ import '../app_utils/app_strings.dart';
 class ValidationForm {
   static String? phoneValidator(String? value) {
     bool isValid =
-        RegExp(r"^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})")
-            .hasMatch(value!);
+        RegExp(r"^(01)(0|1|2|5)([0-9]{8})$").hasMatch(value!);
     if (value.isEmpty) {
       return AppStrings.pleaseEnterPhoneNumber;
     } else if (!isValid) {
