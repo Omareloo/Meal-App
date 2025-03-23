@@ -53,7 +53,7 @@ dependencies:
 
   jiffy: ^6.3.2
   logger: ^2.5.0
- 
+  google_generative_ai: ^0.4.6
   smooth_page_indicator: ^1.2.1
   
   either_dart: ^1.0.0
