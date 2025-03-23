@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meal_ware/features/home/presentation/widgets/addingre.dart';
+import 'package:meal_ware/features/home/presentation/widgets/searchBar.dart';
 import 'package:meal_ware/features/home/presentation/widgets/topRecipeBar.dart';
 
 import '../../../../config/style/app_color.dart';
@@ -19,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              SearchBar(),
+              SearchSection(),
               AddIngredianteBuuton(),
               TopRecipeBar(),
               RecipeItem(
