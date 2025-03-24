@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:meal_ware/features/filter/presentation/pages/filter_screen.dart';
 
 
 import '../../../../config/style/app_color.dart';
@@ -74,7 +75,7 @@ class _SearchSectionState extends State<SearchSection> {
     showModalBottomSheet(
       isScrollControlled: true,
         context: context
-        , builder:(context)=>FilterScreen(),
+        , builder:(context)=> FilterScreen(),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
       ),
