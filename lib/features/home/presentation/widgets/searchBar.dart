@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meal_ware/features/filter/presentation/pages/filter_screen.dart';
 
+
 import '../../../../config/style/app_color.dart';
+
+
+
+
+
+
 
 class SearchSection extends StatefulWidget {
   const SearchSection({super.key});
@@ -13,6 +20,7 @@ class SearchSection extends StatefulWidget {
 
 class _SearchSectionState extends State<SearchSection> {
   bool _isPressed = true;
+ 
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,6 +52,8 @@ class _SearchSectionState extends State<SearchSection> {
               ),
             ),
             Spacer(),
+
+           
             IconButton(
               onPressed: _showFilterSheet,
               icon: ImageIcon(
@@ -51,6 +61,7 @@ class _SearchSectionState extends State<SearchSection> {
                 color: _isPressed?AppColor.backGround:AppColor.grey,
 
             ),
+
             )
           ],
         ),
@@ -58,12 +69,13 @@ class _SearchSectionState extends State<SearchSection> {
     );
   }
 
+
   _showFilterSheet() {
 
     showModalBottomSheet(
       isScrollControlled: true,
         context: context
-        , builder:(context)=>FilterScreen(),
+        , builder:(context)=> FilterScreen(),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
       ),
@@ -72,5 +84,6 @@ setState(() {
   _isPressed = !_isPressed;
 });
   }
+
 
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:meal_ware/features/chat/presentation/pages/add_chat_indegraates.dart';
 import '../../../../config/style/app_color.dart';
 
 class AddIngredianteBuuton extends StatelessWidget {
@@ -11,7 +11,18 @@ class AddIngredianteBuuton extends StatelessWidget {
     return  Padding(
       padding:EdgeInsets.symmetric(vertical: 16.h),
       child: InkWell(
-        onTap: (){},
+ 
+        onTap: (){
+           Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddChatIndegraates()),
+                  );
+                
+
+        },
+
+      
+
         child: Container(
           height: 40.h,
           decoration: BoxDecoration(
