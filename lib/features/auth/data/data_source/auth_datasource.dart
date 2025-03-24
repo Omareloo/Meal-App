@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:meal_ware/core/data/local/Profile/ProfileModel.dart';
+import 'package:meal_ware/core/data/local/Profile/ProfileService.dart';
+import 'package:meal_ware/core/di/db_injection.dart';
 import 'package:meal_ware/features/auth/data/models/requests/log_in_request_body.dart';
 import 'package:meal_ware/features/auth/domain/entity/auth_entity.dart';
 import 'package:either_dart/either.dart';
@@ -33,6 +36,9 @@ class AuthDataSourceImpl implements DataSource {
         email: user.email,
         phone: user.phone
       );
+      final ProfileModel profileModel= ProfileModel(newUser.email!, newUser.name!, newUser.phone!);
+      ProfileService service =getIt<ProfileService>();
+      service.saveProfile(profileModel);
 
       return await createCurrentUser(newUser);
     } on FirebaseAuthException catch (e) {
@@ -105,6 +111,10 @@ class AuthDataSourceImpl implements DataSource {
       if (idToken.isNotEmpty) {
         debugPrint('✅ User ID Token: $idToken'); // Debug log
       }
+
+      // final ProfileModel profileModel= ProfileModel(userCredential.user!.email!, userCredential.user!.displayName!, userCredential.user!.phoneNumber!);
+      // ProfileService service =getIt<ProfileService>();
+      // service.saveProfile(profileModel);
 
       return const Right(true);
     } on FirebaseAuthException catch (e) {

@@ -2,21 +2,25 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meal_ware/core/screens/splash_screen.dart';
-import 'package:meal_ware/features/auth/presentation/pages/auth_screen.dart';
-import 'package:meal_ware/firebase_options.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:meal_ware/core/data/local/shared_preferences_service.dart';
+
+
 import 'config/style/app_theme.dart';
+import 'core/data/local/Profile/ProfileModel.dart';
 import 'core/di/db_injection.dart';
-import 'package:flutter/foundation.dart';
 
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform, // ✅ Fix for Web
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await setupServiceLocator(); // ✅ Setup dependencies
-    runApp(const MyApp());
+  await Hive.initFlutter();
+  Hive.registerAdapter(ProfileModelAdapter());
+  await getIt<SharedPreferencesHelper>().init();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -32,6 +36,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: appTheme,
+
         home: SplashScreen(),
 
       ),

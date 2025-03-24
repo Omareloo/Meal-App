@@ -21,10 +21,10 @@ class AppLoginButton extends StatelessWidget {
         elevation: 0,
         minimumSize: const Size(300, 57),
       ),
+      onPressed: isLoading ? null : onPressed,
       child: isLoading
           ? const CircularProgressIndicator()
           : Text('Login', style: AppTextStyle.font21background700),
-      onPressed: isLoading ? null : onPressed,
     );
   }
 }

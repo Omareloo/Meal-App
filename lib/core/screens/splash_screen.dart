@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:meal_ware/core/data/local/shared_preferences_service.dart';
+import 'package:meal_ware/core/di/db_injection.dart';
+import 'package:meal_ware/features/auth/presentation/pages/auth_screen.dart';
 import 'package:meal_ware/features/auth/presentation/widgets/auth_widgets/logo.dart';
 import 'package:meal_ware/features/onboarding/onboarding_screen.dart';
-import 'package:meal_ware/features/onboarding/pages/page_one.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,39 +20,37 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-
-
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1), 
+      duration: const Duration(seconds: 1),
     );
 
-    
     animation = Tween<Offset>(
-      begin: const Offset(0, -1), 
+      begin: const Offset(0, -1),
       end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: controller,
-      curve: Curves.easeInOut,
-    ));
+    ).animate(CurvedAnimation(parent: controller, curve: Curves.easeInOut));
 
-    
     controller.forward();
 
-  
-    Future.delayed(const Duration(seconds: 5), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const OnboardingScreen(),
-        ),
-      );
+    Future.delayed(const Duration(seconds: 5), () async {
+      SharedPreferencesHelper helper = getIt<SharedPreferencesHelper>();
+      bool isFirstTime = await helper.getIsFirstTime();
+      if (isFirstTime) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const OnboardingScreen()),
+        );
+      }else{
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const AuthScreen()),
+        );
+      }
     });
   }
 
   @override
   void dispose() {
-  
     controller.dispose();
     super.dispose();
   }
@@ -59,10 +59,7 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SlideTransition(
-          position: animation,
-          child: const LogoWidget(),
-        ),
+        child: SlideTransition(position: animation, child: const LogoWidget()),
       ),
     );
   }

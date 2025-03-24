@@ -6,7 +6,4 @@ abstract class AuthRepo {
   Future<Either<String, void>> signUp(UserModel user);
   Future<Either<String, void>> createCurrentUser(UserModel user);
 
-
-
-
 }
