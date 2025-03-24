@@ -9,7 +9,7 @@ class Gemini{
         apiKey: "AIzaSyBom3Hd-Ssxs6KMbxa-I6TE8H--eUQNR2g",
       );
       String prompt = '''
-    Provide a response for the input $recipeName. If $recipeName 
+    Provide a response for the input $recipeName.  If $recipeName 
     does not correspond to a valid recipe, return: 'No information available'. 
     Otherwise, generate a detailed JSON output structured as follows: 
     {
@@ -35,6 +35,7 @@ class Gemini{
       print(jsonResponse);
 
       return jsonResponse;
+
   }
 
 
