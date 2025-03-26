@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meal_ware/features/filter/presentation/pages/filter_screen.dart';
 import '../../../../config/style/app_color.dart';
-import '../../../search/presentation/pages/search_screen.dart';
 
 class SearchSection extends StatefulWidget {
   final VoidCallback onTap;

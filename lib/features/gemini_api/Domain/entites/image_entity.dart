@@ -7,3 +7,4 @@ class ImageEntity {
   static const String defaultImage = "https://i.imgur.com/exdKOOz.png";
 
 }
+

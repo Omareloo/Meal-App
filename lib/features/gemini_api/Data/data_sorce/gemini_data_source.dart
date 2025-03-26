@@ -1,14 +1,16 @@
 import 'dart:convert';
-
+import 'package:flutter/foundation.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
-
 import '../models/gemini_model.dart';
+
+
 abstract class GeminiRemoteDatasource {
   Future<AIMealModel> getRecipeSuggestions(String ingredients);
 }
 
 class GeminiRemoteDatasourceImpl implements GeminiRemoteDatasource {
   final String apiKey = 'AIzaSyCjKwqoUqyjI0vxQUQysTUF3hPErisU1Do';
+
 
   GeminiRemoteDatasourceImpl();
 
@@ -50,7 +52,7 @@ class GeminiRemoteDatasourceImpl implements GeminiRemoteDatasource {
       final content = [Content.text(prompt)];
 
       final response = await gemini.generateContent(content);
-      if (response.text == null){
+      if (response.text == null) {
         throw Exception('JSON data not found in the response');
       }
       final jsonString = extractJson(response.text!.trim());
@@ -58,14 +60,18 @@ class GeminiRemoteDatasourceImpl implements GeminiRemoteDatasource {
       printLongText(jsonString);
       return AIMealModel.fromJson(jsonMap);
     } catch (e) {
-      print('Error: $e');
+      if (kDebugMode) {
+        print('Error: $e');
+      }
       throw Exception('Error fetching recipe suggestions: $e');
     }
   }
   void printLongText(String text) {
     final pattern = RegExp('.{1,800}');
     for (final match in pattern.allMatches(text)) {
-      print(match.group(0));
+      if (kDebugMode) {
+        print(match.group(0));
+      }
     }
   }
 }
