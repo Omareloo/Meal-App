@@ -53,3 +53,5 @@ android/app/src/main/java/generated_plugin_registrant.*
 .fvm/
 
 #*.g.dart
+config.bat
+node_modules
