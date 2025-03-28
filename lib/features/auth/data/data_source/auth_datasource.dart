@@ -34,13 +34,15 @@ class AuthDataSourceImpl implements DataSource {
         id: userCredential.user?.uid,
         name: user.name,
         email: user.email,
-        phone: user.phone
+        phone: user.phone,
       );
-      final ProfileModel profileModel= ProfileModel(newUser.email!, newUser.name!, newUser.phone!);
-      ProfileService service =getIt<ProfileService>();
-      service.saveProfile(profileModel);
 
-      return await createCurrentUser(newUser);
+      // Save user data in Firestore
+      final result = await createCurrentUser(newUser);
+      if (result.isLeft) return result; // Return error if Firestore fails
+
+      // Fetch or create the profile and save it locally
+      return await _fetchAndSaveProfile(userCredential.user!);
     } on FirebaseAuthException catch (e) {
       return Left(_mapFirebaseErrorCodeToMessage(e.code));
     } catch (e) {
@@ -74,14 +76,12 @@ class AuthDataSourceImpl implements DataSource {
             (uid) async {
           final userDoc = await userCollection.doc(uid).get();
           if (!userDoc.exists) {
-            final newUser = {
+            await userCollection.doc(uid).set({
               'id': user.id,
               'name': user.name,
               'email': user.email,
               'phone': user.phone,
-              // Don't store password!
-            };
-            await userCollection.doc(uid).set(newUser);
+            });
           }
           return const Right(null);
         },
@@ -107,22 +107,62 @@ class AuthDataSourceImpl implements DataSource {
         password: password,
       );
 
-      final idToken = await userCredential.user?.getIdToken() ?? '';
-      if (idToken.isNotEmpty) {
-        debugPrint('✅ User ID Token: $idToken'); // Debug log
+      final User? firebaseUser = userCredential.user;
+      if (firebaseUser == null) {
+        return const Left('Login failed. Please try again.');
       }
 
-      // final ProfileModel profileModel= ProfileModel(userCredential.user!.email!, userCredential.user!.displayName!, userCredential.user!.phoneNumber!);
-      // ProfileService service =getIt<ProfileService>();
-      // service.saveProfile(profileModel);
+      // Fetch or create the profile and save it locally
+      final profileResult = await _fetchAndSaveProfile(firebaseUser);
 
-      return const Right(true);
+      return profileResult.fold(
+            (error) => Left(error),
+            (_) => const Right(true),
+      );
     } on FirebaseAuthException catch (e) {
-      debugPrint('🔥 FirebaseAuthException: ${e.code} - ${e.message}');
       return Left(_mapFirebaseErrorCodeToMessage(e.code));
     } catch (e) {
-      debugPrint('🔥 Unexpected error: $e');
       return Left('An unexpected error occurred: $e');
+    }
+  }
+
+  /// 🔹 Fetch user profile from Firestore, or create it if missing, then save locally
+  Future<Either<String, void>> _fetchAndSaveProfile(User firebaseUser) async {
+    try {
+      final userCollection = firestore.collection('users');
+      final userDoc = await userCollection.doc(firebaseUser.uid).get();
+
+      ProfileModel profile;
+
+      if (userDoc.exists && userDoc.data() != null) {
+        final data = userDoc.data()!;
+        profile = ProfileModel(
+          data['email'] ?? firebaseUser.email ?? '',
+          data['name'] ?? firebaseUser.displayName ?? 'Unknown',
+          data['phone'] ?? firebaseUser.phoneNumber ?? 'N/A',
+        );
+      } else {
+        // If user profile doesn't exist, create one
+        profile = ProfileModel(
+          firebaseUser.email ?? '',
+          firebaseUser.displayName ?? 'Unknown',
+          firebaseUser.phoneNumber ?? 'N/A',
+        );
+
+        await userCollection.doc(firebaseUser.uid).set({
+          'email': profile.email,
+          'name': profile.username,
+          'phone': profile.phoneNumber,
+        });
+      }
+
+      // Save profile locally using Hive
+      ProfileService service = getIt<ProfileService>();
+      await service.saveProfile(profile);
+
+      return const Right(null);
+    } catch (e) {
+      return Left('Failed to retrieve or create user profile: $e');
     }
   }
 
@@ -144,7 +184,7 @@ class AuthDataSourceImpl implements DataSource {
       case 'network-request-failed':
         return 'Network error. Check your internet connection.';
       default:
-        debugPrint('⚠️ Unhandled Firebase Auth Error Code: $code');  // Log unknown errors
+        debugPrint('⚠️ Unhandled Firebase Auth Error Code: $code');
         return 'Authentication failed. Please try again later.';
     }
   }
