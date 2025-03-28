@@ -9,6 +9,8 @@ class AppColor {
   static const Color blue = Color(0xff116ACC);
   static const Color primary = Color(0xff116ACC);
   static const Color lightGrey = Color(0xff99a1bc);
+  static const Color lightGrey2 = Color(0xffB9B9B9);
+  static const Color lightGrey3 = Color(0xff939393);
   static const Color success = Color(0xff1EC173);
   static const Color  primary10 = Color.fromRGBO(17, 106, 204, 0.10);
 
