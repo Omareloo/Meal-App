@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../config/style/app_color.dart';
+import '../../../gemini_api/Presentation/pages/add_chat_indegraates.dart';
 
-class AddIngredianteBuuton extends StatelessWidget {
+class AddIngredientsButton extends StatelessWidget {
+  const AddIngredientsButton({super.key});
+
 
 
   @override
@@ -11,7 +13,12 @@ class AddIngredianteBuuton extends StatelessWidget {
     return  Padding(
       padding:EdgeInsets.symmetric(vertical: 16.h),
       child: InkWell(
-        onTap: (){},
+        onTap: (){
+           Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddChatIngredients()),
+                  );
+        },
         child: Container(
           height: 40.h,
           decoration: BoxDecoration(
@@ -21,7 +28,7 @@ class AddIngredianteBuuton extends StatelessWidget {
           child: Padding(
             padding:EdgeInsets.symmetric(vertical: 10.h,horizontal: 12.w),
             child: Text(
-              "add your ingrediantes",
+              "add your Ingredients",
               style: TextStyle(
                   color: AppColor.white,
                   fontSize: 15.sp,
