@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../config/style/app_color.dart';
 
 class TopRecipeBar extends StatelessWidget {

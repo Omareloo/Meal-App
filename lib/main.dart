@@ -6,6 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:meal_ware/config/style/app_theme.dart';
 import 'package:meal_ware/core/data/local/Profile/ProfileModel.dart';
 import 'package:meal_ware/core/data/local/shared_preferences_service.dart';
+
 import 'package:meal_ware/core/di/db_injection.dart';
 import 'package:meal_ware/core/screens/splash_screen.dart';
 import 'package:meal_ware/features/auth/presentation/pages/auth_screen.dart';
@@ -13,6 +14,16 @@ import 'package:meal_ware/features/fav/managers/cubit.dart';
 import 'package:meal_ware/features/home/domain/use_case/get_meal_use_case.dart';
 import 'package:meal_ware/features/home/presentation/manager/cubit.dart';
 import 'package:meal_ware/features/home/presentation/pages/home_screen.dart';
+
+import 'package:meal_ware/features/home/presentation/pages/home_screen.dart';
+
+
+import 'config/style/app_theme.dart';
+import 'core/data/local/Profile/ProfileModel.dart';
+import 'core/di/db_injection.dart';
+import 'features/mealdetails/presentation/pages/ui_meal_details.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +41,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -48,6 +60,7 @@ class MyApp extends StatelessWidget {
           theme: appTheme,
           home:  AuthScreen(),
         ),
+
       ),
     );
   }

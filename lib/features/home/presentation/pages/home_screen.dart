@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meal_ware/config/style/app_color.dart';
@@ -17,12 +18,17 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: AppColor.white,
         body: Padding(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              SearchBar(),
-              AddIngredianteBuuton(),
+              SearchSection(onTap: () {   Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SearchScreen()),
+              );},),
+              AddIngredientsButton(),
               TopRecipeBar(),
+
               BlocBuilder<HomeBloc, HomeState>(
                 builder: (context, state) {
                   if (state is HomeLoading) {
@@ -51,6 +57,7 @@ class HomeScreen extends StatelessWidget {
                   }
                   return SizedBox();
                 },
+
               ),
             ],
           ),
