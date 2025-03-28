@@ -5,9 +5,11 @@ import 'package:get_it/get_it.dart';
 import 'package:meal_ware/config/style/app_color.dart';
 import 'package:meal_ware/features/home/presentation/manager/cubit.dart';
 import 'package:meal_ware/features/home/presentation/manager/states.dart';
-import 'package:meal_ware/features/home/presentation/widgets/addingre.dart';
+import 'package:meal_ware/features/home/presentation/widgets/ingredients_button.dart';
+import 'package:meal_ware/features/home/presentation/widgets/searchBar.dart';
 import 'package:meal_ware/features/home/presentation/widgets/topRecipeBar.dart';
 import 'package:meal_ware/features/fav/presentation/widget/recipeItem.dart';
+import 'package:meal_ware/features/search/presentation/pages/search_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override

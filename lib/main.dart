@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: appTheme,
-          home:  AuthScreen(),
+          home:  SplashScreen(),
         ),
 
       ),

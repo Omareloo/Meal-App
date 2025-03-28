@@ -58,7 +58,7 @@ class _UiMealDetailsState extends State<UiMealDetails> with SingleTickerProvider
           20.hs,
           Text(
             "Italian Pizza",
-            style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold, color: AppColor.black),
+            style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold, color: AppColor.black),
           ),
           10.hs,
           Text(

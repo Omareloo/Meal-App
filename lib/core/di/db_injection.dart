@@ -54,7 +54,7 @@ Future<void> setupServiceLocator() async {
   //hive
 
   // ✅ Firebase Services
->
+
   getIt.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
   getIt.registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance);
   await Hive.initFlutter();
@@ -76,7 +76,7 @@ Future<void> setupServiceLocator() async {
 
 
   // ✅ Connectivity
-  getIt.registerLazySingleton<Connectivity>(() => Connectivity());
+  // getIt.registerLazySingleton<Connectivity>(() => Connectivity());
 
   getIt.registerLazySingleton<AuthDataSourceImpl>(
         () => AuthDataSourceImpl(auth: getIt<FirebaseAuth>(), firestore: getIt<FirebaseFirestore>()),
@@ -114,29 +114,23 @@ Future<void> setupServiceLocator() async {
 
   // ✅ Favorite Feature Dependencies
   // ✅ Favorites Data Source
-  getIt.registerLazySingleton<FavoritesDatasource>(
-        () => FavoritesDatasourceImp(firestore: getIt<FirebaseFirestore>()),
-  );
+  // getIt.registerLazySingleton<FavoritesDatasource>(
+  //       () => FavoritesDatasourceImp(firestore: getIt<FirebaseFirestore>()),
+  // );
 
   // ✅ Favorites Repository
   getIt.registerLazySingleton<FavoritesRepository>(
         () => FavoritesRepositoryImp(favoritesDatasource: getIt<FavoritesDatasource>()),
   );
 
-  getIt.registerLazySingleton<LoginUseCase>(
-        () => LoginUseCase(getIt<AuthRepo>()),
-  );
-  getIt.registerLazySingleton<AuthRepo>(
-        () => AuthRepoImpl(getIt<AuthDataSourceImpl>(), getIt<Connectivity>()),
-  );
-  getIt.registerFactory<LogInCubit>(() => LogInCubit(getIt()));
+ 
+ 
 
-  getIt.registerLazySingleton<SignUpUseCase>(
-        () => SignUpUseCase(getIt<AuthRepo>()),
-  );
-  getIt.registerFactory<RegisterCubit>(
-        () => RegisterCubit(getIt<SignUpUseCase>()),
-  );
+
+
+  
+
+
 
   // Gemini Integration
   getIt.registerLazySingleton<GeminiRemoteDatasource>( () => GeminiRemoteDatasourceImpl());
@@ -153,7 +147,7 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<ImageRepository>(() => ImageRepositoryImpl(imageRemoteDatasource: getIt<ImageRemoteDatasource>()));
   getIt.registerLazySingleton<GetDishImage>(() => GetDishImage(imageRepository: getIt<ImageRepository>()));
 
-}
+
 
 
   // ✅ Register Favorite Use Cases Separately

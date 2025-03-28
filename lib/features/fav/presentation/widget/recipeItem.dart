@@ -62,8 +62,9 @@ class RecipeItem extends StatelessWidget {
                 ),
                 Text(
                   itemName,
+                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    fontSize: 20.sp,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
                     color: AppColor.backGround,
                   ),
