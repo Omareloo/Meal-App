@@ -1,5 +1,5 @@
-import 'package:meal_ware/features/gemini_api/Domain/entites/image_entity.dart';
-import '../../Domain/entites/meal_entity.dart';
+import '../../Data/models/ImageModel.dart';
+import '../../Data/models/gemini_model.dart';
 
 
 abstract class MealState {}
@@ -9,14 +9,13 @@ class MealInitial extends MealState {}
 class MealLoading extends MealState {}
 
 class MealLoaded extends MealState {
-  final AIMeal aiMeal;
-  final ImageEntity image;
+  final GeminiModel? aiMeal;
+  final ImageModel? dishImage;
 
-  MealLoaded({required this.aiMeal, required this.image});
+   MealLoaded({this.aiMeal, this.dishImage,});
 }
 
 class MealError extends MealState {
   final String message;
-
   MealError({required this.message});
 }

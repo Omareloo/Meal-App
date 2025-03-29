@@ -1,14 +1,12 @@
-import 'package:meal_ware/features/gemini_api/Domain/entites/image_entity.dart';
 import '../../Data/Repo/image_repo.dart';
-import 'base_use_cse.dart';
+import '../../Data/models/ImageModel.dart';
 
-class GetDishImage implements UseCase<ImageEntity, String> {
-  final ImageRepository imageRepository;
+class ImageUseCase {
+  final ImageRepository repository;
 
-  GetDishImage({required this.imageRepository});
+  ImageUseCase({required this.repository});
 
-  @override
-  Future<ImageEntity> call(String dishName) async {
-    return await imageRepository.getDishImage(dishName);
+  Future<ImageModel> execute(String dishName) async {
+    return await repository.getImage(dishName);
   }
 }

@@ -19,7 +19,7 @@ class FoodCard extends StatelessWidget {
         }
         if (state is MealLoaded) {
           final aiMeal = state.aiMeal;
-          final image = state.image;
+          final image = state.dishImage;
         return Card(
           color: AppColor.white,
           margin: EdgeInsets.symmetric(vertical: 8.h),
@@ -33,23 +33,15 @@ class FoodCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12.r),
                   child: Image.network(
-                    image.imageUrl, // Corrected line: Use image.imageUrl
+                    image!.imageUrl, // Corrected line: Use image.imageUrl
                     width: 283.w,
                     height: 133.h,
                     fit: BoxFit.cover,
-                    errorBuilder: (
-                        context,
-                        error,
-                        stackTrace
-                        ) => Image.asset("assets/images/Mask group (5).png",
-                      width: 283.w,
-                      height: 133.h,
-                      fit: BoxFit.cover,),
                   ),
                 ),
                 SizedBox(height: 7.h),
                 Text(
-                  aiMeal.name,
+                  aiMeal!.recipeName,
                   style: TextStyle(fontSize: 22.9.sp, fontWeight: FontWeight.w700),
                 ),
                 SizedBox(height: 5.h),
@@ -65,7 +57,7 @@ class FoodCard extends StatelessWidget {
                     ),
                     SizedBox(width: 5.w),
                     Text(
-                      "${aiMeal.cookTime} min",
+                      "${aiMeal.totalTime} min",
                       style: TextStyle(
                         fontSize: 16.sp,
                         color: AppColor.backGround,

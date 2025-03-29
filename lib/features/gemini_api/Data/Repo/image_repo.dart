@@ -1,6 +1,5 @@
-import 'package:meal_ware/features/gemini_api/Domain/entites/image_entity.dart';
-
+import '../models/ImageModel.dart';
 
 abstract class ImageRepository {
-  Future<ImageEntity> getDishImage(String dishName);
+  Future<ImageModel> getImage(String dishName);
 }

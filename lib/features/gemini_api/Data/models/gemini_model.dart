@@ -1,63 +1,71 @@
-import '../../Domain/entites/meal_entity.dart';
-class AIMealModel extends AIMeal {
-  const AIMealModel({
-    required super.name,
-    required super.mealType,
-    required super.rating,
-    required super.cookTime,
-    required super.servingSize,
-    required super.summary,
-    required super.ingredients,
-    required super.mealSteps,
+class GeminiModel {
+  final String id;
+  final String recipeName;
+  final String totalTime;
+  final String summary;
+  final NutritionModel nutrition;
+  final int numberOfIngredients;
+  final List<String> ingredients;
+  final List<String> directions;
+
+  GeminiModel({
+    required this.id,
+    required this.recipeName,
+    required this.totalTime,
+    required this.summary,
+    required this.nutrition,
+    required this.numberOfIngredients,
+    required this.ingredients,
+    required this.directions,
   });
 
-  factory AIMealModel.fromJson(Map<String, dynamic> json) {
-    return AIMealModel(
-      name: json['name'],
-      mealType: json['meal_type'],
-      rating: json['rating'],
-      cookTime: json['cook_time'],
-      servingSize: json['serving_size'],
-      summary: json['summary'],
-      ingredients: List<IngredientModel>.from(
-          json['ingredients'].map((x) => IngredientModel.fromJson(x))),
-      mealSteps: List<String>.from(json['meal_steps'].map((x) => x)),
-    );
-  }
+  factory GeminiModel.fromJson(Map<String, dynamic> json) => GeminiModel(
+    id: json["id"],
+    recipeName: json["recipeName"],
+    totalTime: json["totalTime"],
+    summary: json["summary"],
+    nutrition: NutritionModel.fromJson(json["nutrition"]),
+    numberOfIngredients: json["numberOfIngredients"],
+    ingredients: List<String>.from(json["ingredients"].map((x) => x)),
+    directions: List<String>.from(json["directions"].map((x) => x)),
+  );
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-    'meal_type': mealType,
-    'rating': rating,
-    'cook_time': cookTime,
-    'serving_size': servingSize,
-    'summary': summary,
-    'ingredients': List<dynamic>.from(ingredients.map((x) => x.toJson())),
-    'meal_steps': List<dynamic>.from(mealSteps.map((x) => x)),
+    "id": id,
+    "recipeName": recipeName,
+    "totalTime": totalTime,
+    "summary": summary,
+    "nutrition": nutrition.toJson(),
+    "numberOfIngredients": numberOfIngredients,
+    "ingredients": List<dynamic>.from(ingredients.map((x) => x)),
+    "directions": List<dynamic>.from(directions.map((x) => x)),
   };
 }
 
-class IngredientModel {
-  IngredientModel({
-    required this.name,
-    required this.imageUrl,
-    required this.quantity,
+class NutritionModel {
+  final String calories;
+  final String protein;
+  final String fat;
+  final String carbohydrates;
+
+  NutritionModel({
+    required this.calories,
+    required this.protein,
+    required this.fat,
+    required this.carbohydrates,
   });
 
-  String name;
-  String imageUrl;
-  String quantity;
-
-  factory IngredientModel.fromJson(Map<String, dynamic> json) =>
-      IngredientModel(
-        name: json["name"],
-        imageUrl: json["image_url"],
-        quantity: json["quantity"],
-      );
+  factory NutritionModel.fromJson(Map<String, dynamic> json) => NutritionModel(
+    calories: json["calories"],
+    protein: json["protein"],
+    fat: json["fat"],
+    carbohydrates: json["carbohydrates"],
+  );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "image_url": imageUrl,
-    "quantity": quantity,
+    "calories": calories,
+    "protein": protein,
+    "fat": fat,
+    "carbohydrates": carbohydrates,
   };
 }

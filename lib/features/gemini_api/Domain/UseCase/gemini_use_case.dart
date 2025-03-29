@@ -1,12 +1,11 @@
 import '../../Data/Repo/gemini_repo.dart';
-import '../entites/meal_entity.dart';
-import 'base_use_cse.dart';
+import '../../Data/models/gemini_model.dart';
 
-class GetMealRecommendation implements UseCase<AIMeal, String> {
+class MealUseCase {
   final MealRepository mealRepository;
-  GetMealRecommendation({required this.mealRepository});
-  @override
-  Future<AIMeal> call(String ingredients) async {
+  MealUseCase({required this.mealRepository});
+
+  Future<GeminiModel> call(String ingredients) async {
     return await mealRepository.getMealSuggestion(ingredients);
   }
 }
