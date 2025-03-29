@@ -1,4 +1,6 @@
-import '../../Domain/entites/meal_entity.dart';
+
+import '../models/gemini_model.dart';
+
 abstract class MealRepository {
-  Future<AIMeal> getMealSuggestion(String ingredients);
+  Future<GeminiModel> getMealSuggestion(String ingredients);
 }

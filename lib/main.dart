@@ -38,9 +38,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: appTheme,
-
-        home: UiMealDetails(),
-
+        home: HomeScreen(),
       ),
     );
   }

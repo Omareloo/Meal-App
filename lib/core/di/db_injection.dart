@@ -67,17 +67,14 @@ Future<void> setupServiceLocator() async {
   // Gemini Integration
   getIt.registerLazySingleton<GeminiRemoteDatasource>( () => GeminiRemoteDatasourceImpl());
   getIt.registerLazySingleton<MealRepository>(() => MealRepositoryImpl(geminiRemoteDatasource: getIt<GeminiRemoteDatasource>()));
-  getIt.registerLazySingleton<GetMealRecommendation>(() => GetMealRecommendation(mealRepository: getIt<MealRepository>()));
+  getIt.registerLazySingleton<MealUseCase>(() => MealUseCase(mealRepository: getIt<MealRepository>()));
 
-
-  getIt.registerFactory<MealCubit>(
-        () => MealCubit(getIt<GetMealRecommendation>()  , getIt<GetDishImage>() ),
-  );
+  getIt.registerFactory<MealCubit>(() => MealCubit(getIt<MealUseCase>(), getIt<ImageUseCase>()));
 
   // Image Integration
-  getIt.registerLazySingleton<ImageRemoteDatasource>( () => ImageRemoteDatasourceImpl());
-  getIt.registerLazySingleton<ImageRepository>(() => ImageRepositoryImpl(imageRemoteDatasource: getIt<ImageRemoteDatasource>()));
-  getIt.registerLazySingleton<GetDishImage>(() => GetDishImage(imageRepository: getIt<ImageRepository>()));
+  getIt.registerLazySingleton<ImageDataSource>( () => ImageDataSourceImpl());
+  getIt.registerLazySingleton<ImageRepository>(() => ImageRepositoryImpl(imageDataSource: getIt<ImageDataSource>()));
+  getIt.registerLazySingleton<ImageUseCase>(() => ImageUseCase(repository: getIt<ImageRepository>()));
 
 }
 

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/style/app_color.dart';
+import '../../../../core/di/db_injection.dart';
+import '../../../gemini_api/Presentation/cubit/gemini_cubit.dart';
 import '../../../gemini_api/Presentation/pages/add_chat_indegraates.dart';
 
 class AddIngredientsButton extends StatelessWidget {
@@ -16,7 +19,9 @@ class AddIngredientsButton extends StatelessWidget {
         onTap: (){
            Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => AddChatIngredients()),
+                    MaterialPageRoute(builder: (context) => BlocProvider(
+                        create: (context) => getIt<MealCubit>(),
+                        child: AddChatIngredients())),
                   );
         },
         child: Container(
